@@ -1,0 +1,36 @@
+@import '../variables.css';
+
+.root {
+  width: 100%;
+  font-size: 0.7em;
+  font-family: 'Lato', Helvetica, sans-serif;
+  font-weight: 700;
+}
+
+.list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  text-transform: uppercase;
+  display: flex;
+  justify-content: space-around;
+}
+
+.list__item {
+  letter-spacing: 1px;
+  display: inline-block;
+  float: none;
+}
+
+.link {
+  text-decoration: none;
+  color: var(--brand-white);
+  padding: 1em;
+  display: block;
+}
+
+.link__active {
+  color: var(--brand-color);
+  border-bottom: 0;
+  box-shadow: 0 2px var(--brand-color);
+}

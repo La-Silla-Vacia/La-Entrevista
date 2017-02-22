@@ -1,0 +1,17 @@
+@import '../variables.css';
+
+.root {
+  width: 100%;
+  max-width: var(--screen-lg-min);
+  margin: 0 auto;
+}
+
+.root__full_width {
+  max-width: inherit;
+}
+
+.title {
+  font-family: var(--font-family-display);
+  font-size: 2em;
+  text-align: center;
+}

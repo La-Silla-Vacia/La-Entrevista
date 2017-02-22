@@ -1,0 +1,112 @@
+@import '../variables.css';
+
+.root {
+  width: 100%;
+  background: var(--brand-lightgrey);
+}
+
+.inner {
+  max-width: var(--screen-lg-min);
+  margin: 0 auto;
+  background-color: var(--brand-white);
+  box-sizing: border-box;
+  min-height: 30em;
+}
+
+.simple .inner {
+  padding: 4em 6em;
+}
+
+.root__full_width .inner {
+  max-width: inherit;
+}
+
+.headerInner {
+  max-width: 42rem;
+  margin: 0 auto;
+  padding: 30vh 0 2em;
+  text-align: center;
+}
+
+.root__full_width .headerInner {
+  padding-top: 50vh;
+}
+
+.header {
+  background-size: cover;
+  background-position: center center;
+}
+
+.title {
+  margin-top: 0;
+  color: var(--brand-white);
+  font-family: var(--font-family-serif);
+  font-size: 3em;
+  text-shadow: 0 0 6em rgba(0,0,0,.8);
+}
+
+.defaultTitle {
+  font-family: var(--font-family-display);
+  font-size: 2em;
+  color: var(--brand-black);
+  margin-top: 0;
+}
+
+.lead {
+  color: var(--brand-white);
+  font-size: 1.25em;
+  text-align: left;
+  font-weight: lighter;
+  line-height: 2;
+  text-shadow: 0 0 6em rgba(0,0,0,.8);
+}
+
+.contentWrap {
+  background-color: var(--brand-lightgrey);
+}
+
+.content {
+  max-width: var(--screen-lg-min);
+  margin: 0 auto;
+  line-height: 2;
+  background-color: var(--brand-white);
+  box-sizing: border-box;
+  color: var(--brand-black);
+  padding: 4em 6em;
+}
+
+.content::after {
+  visibility: hidden;
+  display: block;
+  font-size: 0;
+  content: " ";
+  clear: both;
+  height: 0;
+}
+
+.content p:first-child {
+  margin-top: 0;
+}
+
+.content > div {
+  width: 47.5%;
+  float: left;
+}
+
+.content > div:nth-child(2n) {
+  margin-left: 5%;
+}
+
+.simple .content {
+  padding: 0;
+}
+
+.cols_2 {
+  column-count: 2;
+  column-gap: 2em;
+}
+
+.cols_3 {
+  column-count: 3;
+  column-gap: 5em;
+}
