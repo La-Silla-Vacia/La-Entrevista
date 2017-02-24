@@ -10,14 +10,7 @@
     <link rel="apple-touch-icon" href="apple-touch-icon.png">
   </head>
   <body>
-    <div id="container"></div>
+    <div id="silla-interactive-container"></div>
     <script src="<%= bundle %>"></script>
-    <%_ if (!debug && config.trackingID) { _%>
-    <script>
-      window.ga=function(){ga.q.push(arguments)};ga.q=[];ga.l=+new Date;
-      ga('create','<%= config.trackingID %>','auto');ga('send','pageview')
-    </script>
-    <script src="https://www.google-analytics.com/analytics.js" async defer></script>
-    <%_ } _%>
   </body>
 </html>

@@ -192,7 +192,7 @@ class HomePage extends React.Component {
     return (
       <Layout>
         <div className={cx(s.root, {[s.root__hidden]: hidden})}>
-          <div className={s.background} style={{backgroundImage: "url(/images/index_background.jpg)"}}/>
+          <div className={s.background} style={{backgroundImage: "url(https://la-entrevista.firebaseapp.com/images/index_background.jpg)"}}/>
           <div className={s.content} dangerouslySetInnerHTML={{__html: html}}/>
           {link}
         </div>

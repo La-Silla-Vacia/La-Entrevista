@@ -60,32 +60,44 @@ class HomePage extends React.Component {
       })
   }
 
-  getSections() {
+  getSections(id) {
     if (!this.state.data.length) return;
     return this.state.data.map((single, index) => {
-      let activeSectionArray = this.state.openSection;
-      if (this.props.route.params.id) {
+      let activeSectionArray = [this.state.openSection];
+      if (!id && this.props.route.params.id) {
         activeSectionArray = this.props.route.params.id;
+        if (activeSectionArray.indexOf(single.id) !== -1) {
+          return this.createSection(single, index);
+        }
+      } else {
+        console.log(activeSectionArray, single.id);
+        if (id == single.id) {
+          return setTimeout(() => {
+            return this.createSection(single, index);
+          }, 500);
+        }
       }
-      let hidden = true;
-      if (activeSectionArray.indexOf(single.id) !== -1) {
-        hidden = false;
+      // if (this.props.route.params.id) {
+      //   activeSectionArray = this.props.route.params.id;
+      // }
 
-        return (
-          <Section
-            id={single.id}
-            title={single.title}
-            intro={single.intro}
-            image={single.image}
-            content={single.text}
-            hidden={hidden}
-            cols="2"
-            key={index}
-            fullWidth
-          />
-        )
-      }
+
     });
+  }
+
+  createSection(single, index) {
+    return (
+      <Section
+        id={single.id}
+        title={single.title}
+        intro={single.intro}
+        image={single.image}
+        content={single.text}
+        cols="2"
+        key={index}
+        fullWidth
+      />
+    )
   }
 
   getButtons() {
@@ -102,12 +114,18 @@ class HomePage extends React.Component {
   }
 
   activateSection(id) {
-    const offsetTop = window.scrollY;
-    for (let i = 0; i < offsetTop; i++) {
-      setTimeout(() => {
-        document.body.scrollTop -= 1;
-      }, i * 1.1);
-    }
+    // const offsetTop = window.scrollY;
+    // for (let i = 0; i < offsetTop; i++) {
+    //   setTimeout(() => {
+    //     document.body.scrollTop -= 1;
+    //   }, i * 1.1);
+    // }
+    document.body.style.opacity = 0;
+    this.setState({openSection: id});
+    setTimeout(() => {
+      document.body.scrollTop = 0;
+      document.body.style.opacity = 1;
+    }, 1000);
     // this.setState({openSection: [id]});
   }
 
@@ -131,7 +149,8 @@ class HomePage extends React.Component {
     return (
       <Layout>
         <div className={cx(s.root, {[s.root__hidden]: hidden})}>
-          <div className={s.background} style={{backgroundImage: "url(/images/index_background.jpg)"}}/>
+          <div className={s.background}
+               style={{backgroundImage: "url(https://la-entrevista.firebaseapp.com/images/index_background.jpg)"}}/>
           <div className={s.content} dangerouslySetInnerHTML={{__html: html}}/>
           {link}
         </div>

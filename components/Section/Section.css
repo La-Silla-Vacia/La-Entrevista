@@ -161,7 +161,14 @@
   }
 }
 
-@media screen and (max-width: 30rem) {
+@media screen and (max-height: 30em) {
+  .title {
+    font-size: 2em;
+    margin-bottom: 0;
+  }
+}
+
+@media screen and (max-width: 30rem){
   .content,
   .simple .inner {
     padding: 1em;

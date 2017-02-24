@@ -1,0 +1,37 @@
+html, body {
+  font-size: 16px;
+  transition: opacity .2s;
+}
+
+article header .submitted {
+  display: none;
+}
+
+#wrapper {
+  width: inherit;
+}
+
+#header {
+  position: absolute;
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  left: 0;
+  right: 0;
+}
+
+#header .navbar-default,
+.boton-secciones.collapsed,
+.silla-regional .boton-secciones.collapsed:hover {
+  background: none !important;
+  color: #fff;
+}
+
+#header .nav>li>a {
+  color: #fff !important;
+}
+
+.boton-secciones .icon-bar,
+.silla-regional .boton-secciones.collapsed:hover .icon-bar {
+  background-color: #fff !important;
+}

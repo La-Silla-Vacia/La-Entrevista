@@ -15,6 +15,11 @@
     "chunk": "main"
   },
   {
+    "path": "/*",
+    "page": "./home/index-all.jsx",
+    "chunk": "main"
+  },
+  {
     "path": "/error",
     "page": "./error/index.jsx",
     "chunk": "main"
