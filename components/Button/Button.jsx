@@ -16,9 +16,15 @@ class Button extends React.Component {
   }
 
   render() {
+
+    let link = `/section/${this.props.id}`;
+    if (this.props.to) {
+      link = this.props.to;
+    }
+
     return (
       <Link
-        to={`/section/${this.props.id}`}
+        to={link}
         className={cx(s.root)}
         onClick={this.handleClick}>
         <span className={s.inner}>{this.props.children}</span>

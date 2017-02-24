@@ -34,6 +34,10 @@
   padding-top: 50vh;
 }
 
+.root__full_width.smallHeight .headerInner {
+  padding-top: 25vh;
+}
+
 .header {
   position: relative;
 }
@@ -133,7 +137,7 @@
   column-gap: 2em;
 }
 
-@media (max-width: 48rem) {
+@media screen and (max-width: 48rem) {
   .content,
   .simple .inner {
     padding: 2em;
@@ -147,7 +151,25 @@
     margin-left: 0;
   }
 
+  .title {
+    font-size: 2em;
+    margin-bottom: 0;
+  }
+
   .cols_3 {
     column-count: 2;
+  }
+}
+
+@media screen and (max-width: 30rem) {
+  .content,
+  .simple .inner {
+    padding: 1em;
+  }
+}
+
+@media screen and (max-height: 30rem) {
+  .root__full_width .headerInner {
+    padding-top: 18.5em;
   }
 }

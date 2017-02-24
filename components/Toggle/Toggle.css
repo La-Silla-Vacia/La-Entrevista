@@ -10,25 +10,7 @@
   margin: 2em 0;
   box-sizing: border-box;
   border: 3px solid #ccd6d2;
-  cursor: pointer;
 }
-
-/*.root::before {*/
-  /*position: absolute;*/
-  /*content: " ";*/
-  /*width: 3em;*/
-  /*height: 3em;*/
-  /*border: 2px solid #ccd6d2;*/
-  /*border-radius: 100%;*/
-  /*left: 0;*/
-  /*transform: translate(-60%, -60%);*/
-  /*background-color: #fff;*/
-  /*background-image: url('/images/question.svg');*/
-  /*background-repeat: no-repeat;*/
-  /*background-position: center center;*/
-  /*background-size: 60%;*/
-  /*box-sizing: border-box;*/
-/*}*/
 
 .button {
   background: none;
@@ -36,6 +18,7 @@
   text-align: left;
   border: 0;
   padding: 0;
+  cursor: pointer;
 }
 
 .button:focus {
@@ -75,7 +58,15 @@
 
 .content {
   padding: 0 1.5rem;
-  max-height: 20em;
   transition: max-height var(--transition-duration) ease;
   overflow: hidden;
+  max-height: 0;
+}
+
+@media screen and (max-width: 30rem) {
+  .title,
+  .content {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+  }
 }

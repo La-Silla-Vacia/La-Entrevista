@@ -63,28 +63,20 @@ class HomePage extends React.Component {
   getSections() {
     if (!this.state.data.length) return;
     return this.state.data.map((single, index) => {
-      let activeSectionArray = this.state.openSection;
-      if (this.props.route.params.id) {
-        activeSectionArray = this.props.route.params.id;
-      }
-      let hidden = true;
-      if (activeSectionArray.indexOf(single.id) !== -1) {
-        hidden = false;
+      return (
+        <Section
+          id={single.id}
+          title={single.title}
+          intro={single.intro}
+          image={single.image}
+          content={single.text}
+          cols="2"
+          key={index}
+          fullWidth
+          smallHeight
+        />
+      )
 
-        return (
-          <Section
-            id={single.id}
-            title={single.title}
-            intro={single.intro}
-            image={single.image}
-            content={single.text}
-            hidden={hidden}
-            cols="2"
-            key={index}
-            fullWidth
-          />
-        )
-      }
     });
   }
 
@@ -94,6 +86,7 @@ class HomePage extends React.Component {
         <Button
           key={index}
           id={single.id}
+          to={`#section-${single.id}`}
           callback={this.activateSection}>
           {single.title}
         </Button>
@@ -101,14 +94,82 @@ class HomePage extends React.Component {
     });
   }
 
-  activateSection(id) {
-    const offsetTop = window.scrollY;
-    for (let i = 0; i < offsetTop; i++) {
-      setTimeout(() => {
-        document.body.scrollTop -= 1;
-      }, i * 1.1);
+  scrollTo(element, target, duration) {
+    target = Math.round(target);
+    duration = Math.round(duration);
+    if (duration < 0) {
+      return Promise.reject("bad duration");
     }
-    // this.setState({openSection: [id]});
+    if (duration === 0) {
+      element.scrollTop = target;
+      return Promise.resolve();
+    }
+
+    const start_time = Date.now();
+    const end_time = start_time + duration;
+
+    const start_top = element.scrollTop;
+    const distance = target - start_top;
+
+    // based on http://en.wikipedia.org/wiki/Smoothstep
+    const smooth_step = function (start, end, point) {
+      if (point <= start) {
+        return 0;
+      }
+      if (point >= end) {
+        return 1;
+      }
+      const x = (point - start) / (end - start); // interpolation
+      return x * x * (3 - 2 * x);
+    };
+
+    return new Promise(function (resolve, reject) {
+      // This is to keep track of where the element's scrollTop is
+      // supposed to be, based on what we're doing
+      let previous_top = element.scrollTop;
+      // This is like a think function from a game loop
+      const scroll_frame = function () {
+        // if (element.scrollTop != previous_top) {
+        //   reject("interrupted");
+        //   return;
+        // }
+
+        // set the scrollTop for this frame
+        const now = Date.now();
+        const point = smooth_step(start_time, end_time, now);
+        const frameTop = Math.round(start_top + (distance * point));
+        element.scrollTop = frameTop;
+
+        // check if we're done!
+        if (now >= end_time) {
+          resolve();
+          return;
+        }
+
+        // If we were supposed to scroll but didn't, then we
+        // probably hit the limit, so consider it done; not
+        // interrupted.
+        if (element.scrollTop === previous_top
+          && element.scrollTop !== frameTop) {
+          resolve();
+          return;
+        }
+        previous_top = element.scrollTop;
+
+        // schedule next frame for execution
+        setTimeout(scroll_frame, 0);
+      }
+
+      // boostrap the animation process
+      setTimeout(scroll_frame, 0);
+    });
+  }
+
+  activateSection(id) {
+    if (!id) return;
+    const section = document.getElementById(`section-${id}`);
+    const sectionOffset = section.offsetTop;
+    this.scrollTo(document.body, sectionOffset, 1000)
   }
 
   componentWillReceiveProps() {
@@ -135,13 +196,13 @@ class HomePage extends React.Component {
           <div className={s.content} dangerouslySetInnerHTML={{__html: html}}/>
           {link}
         </div>
-        { stuff }
         <Section
-          title="What do you want to read?"
+          title="Quick go to a section:"
           cols="3"
           type="simple">
           {buttons}
         </Section>
+        { stuff }
       </Layout>
     );
   }

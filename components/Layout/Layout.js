@@ -17,8 +17,8 @@ class Layout extends React.Component {
           <Header />
           <main>
             <div {...this.props} className={cx(s.content, this.props.className)} />
-            <Footer />
           </main>
+          <Footer />
         </div>
       </div>
     );

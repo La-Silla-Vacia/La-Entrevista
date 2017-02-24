@@ -60,7 +60,11 @@ class Section extends React.Component {
       // blockquote
       ['/\\n\\>(.*)/g', (str) => {
         const key = Math.floor(Math.random() * 1000);
-        return (<Toggle key={key} title={str.trim().replace('>', '')} />);
+        const allContent = str.trim().replace('>', '');
+        const contentChuncked = allContent.split(':');
+        const title = contentChuncked[0];
+        const content = contentChuncked[1];
+        return (<Toggle key={key} title={title} content={content} />);
       }],
       // paragraphs
       ['/\\n[^\\n]+\\n/g', (line) => {
@@ -156,7 +160,12 @@ class Section extends React.Component {
 
     return (
       <section id={id}
-               className={cx(s.root, {[s.simple]: this.props.type === 'simple'}, {[s.root__full_width]: this.props.fullWidth})}>
+               className={cx(
+                 s.root,
+                 {[s.simple]: this.props.type === 'simple'},
+                 {[s.root__full_width]: this.props.fullWidth},
+                 {[s.smallHeight]: this.props.smallHeight}
+                 )}>
         <div className={s.inner}>
           {header}
           <div className={s.contentWrap}>

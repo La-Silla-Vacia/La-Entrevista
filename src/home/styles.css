@@ -3,8 +3,18 @@
 .root {
   background-size: cover;
   background-position: center center;
-  overflow: hidden;
   position: relative;
+  overflow: hidden;
+}
+
+.root::before,
+.root::after {
+  visibility: hidden;
+  display: block;
+  font-size: 0;
+  content: " ";
+  clear: both;
+  height: 0;
 }
 
 .root__hidden {
@@ -51,11 +61,12 @@
 .content h2 {
   font-size: 1.25em;
   font-weight: lighter;
-  transition: opacity 1s;
+  transition: opacity 1s, font-size 1s;
 }
 
 .root__hidden h2 {
   opacity: 0;
+  font-size: 0;
 }
 
 .content h2::after {
@@ -95,7 +106,7 @@
   display: block;
   text-align: center;
   width: 10em;
-  margin: -5em auto 0;
+  margin: -1.5em auto 0;
   text-decoration: none;
   font-style: italic;
   text-transform: uppercase;
@@ -126,7 +137,7 @@
   }
 }
 
-@media (max-width: 48rem) {
+@media screen and (max-width: 48rem) {
   .content {
     margin: 12em auto 2em;
   }
@@ -137,6 +148,13 @@
   }
 
   .backButton {
-    margin-top: -6.5em;
+    /*margin-top: ;*/
+  }
+}
+
+@media screen and (max-width: 30rem) {
+  .content h1 {
+    font-size: 1.8em;
+    line-height: 1.25;
   }
 }

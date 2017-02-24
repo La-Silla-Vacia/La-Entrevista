@@ -10,7 +10,8 @@ class Toggle extends React.Component {
     this.handleClick = this.handleClick.bind(this);
 
     this.state = {
-      open: false
+      open: false,
+      height: false
     }
   }
 
@@ -18,25 +19,38 @@ class Toggle extends React.Component {
     this.setState({open: !this.state.open})
   }
 
+  componentDidMount() {
+    this.setState({open: true});
+    setTimeout(() => {
+      const height = this.refs.toggle.offsetHeight;
+      this.setState({height});
+      this.setState({open: false});
+    }, 50);
+  }
+
   render() {
 
     let contentStyle = {
-      maxHeight: '0'
+      maxHeight: 0
     };
 
     if (this.state.open) {
+      let height = 2000;
+      if (this.state.height) {
+        height = this.state.height;
+      }
       contentStyle = {
-        maxHeight: '300px'
+        maxHeight: height
       }
     }
 
     return (
-      <div className={cx(s.root, {[s.open]: this.state.open})}>
+      <div ref="toggle" className={cx(s.root, {[s.open]: this.state.open})}>
         <button className={cx(s.button)} onClick={this.handleClick}>
           <span className={s.title}>{this.props.title}</span>
         </button>
         <section className={s.content} style={contentStyle}>
-          <p>Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Donec sed odio dui. Sed posuere consectetur est at lobortis.</p>
+          <p>{this.props.content}</p>
         </section>
       </div>
     );
