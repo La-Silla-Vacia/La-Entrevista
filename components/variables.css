@@ -30,6 +30,6 @@
 
   --screen-xs-min: 30rem;  /* Extra small screen / phone */
   --screen-sm-min: 48rem;  /* Small screen / tablet */
-  --screen-md-min: 64rem;  /* Medium screen / desktop */
+  @custom-media --screen-md-min: 64rem;  /* Medium screen / desktop */
   --screen-lg-min: 75rem; /* Large screen / wide desktop */
 }

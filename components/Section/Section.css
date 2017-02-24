@@ -26,6 +26,8 @@
   margin: 0 auto;
   padding: 30vh 0 2em;
   text-align: center;
+  position: relative;
+  z-index: 1;
 }
 
 .root__full_width .headerInner {
@@ -33,16 +35,35 @@
 }
 
 .header {
+  position: relative;
+}
+
+.header__background {
   background-size: cover;
   background-position: center center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.header__background::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  background-image: linear-gradient(rgba(0,0,0,0.25), rgba(0,0,0,0.7));
 }
 
 .title {
-  margin-top: 0;
+  /*margin-top: 2em;*/
   color: var(--brand-white);
   font-family: var(--font-family-serif);
   font-size: 3em;
-  text-shadow: 0 0 6em rgba(0,0,0,.8);
 }
 
 .defaultTitle {
@@ -58,7 +79,8 @@
   text-align: left;
   font-weight: lighter;
   line-height: 2;
-  text-shadow: 0 0 6em rgba(0,0,0,.8);
+  padding: 0 1em;
+  box-sizing: border-box;
 }
 
 .contentWrap {
@@ -108,5 +130,24 @@
 
 .cols_3 {
   column-count: 3;
-  column-gap: 5em;
+  column-gap: 2em;
+}
+
+@media (max-width: 48rem) {
+  .content,
+  .simple .inner {
+    padding: 2em;
+  }
+
+  .content > div {
+    width: 100%;
+  }
+
+  .content > div:nth-child(2n) {
+    margin-left: 0;
+  }
+
+  .cols_3 {
+    column-count: 2;
+  }
 }

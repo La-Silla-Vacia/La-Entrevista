@@ -1,6 +1,7 @@
 import React from 'react';
 import cx from 'classnames';
 import s from './Button.css';
+import Link from '../Link';
 
 class Button extends React.Component {
 
@@ -10,17 +11,18 @@ class Button extends React.Component {
     this.handleClick = this.handleClick.bind(this);
   }
 
-  handleClick(option) {
-    console.log("Clicked");
+  handleClick() {
+    this.props.callback(this.props.id);
   }
 
   render() {
     return (
-      <button
+      <Link
+        to={`/section/${this.props.id}`}
         className={cx(s.root)}
         onClick={this.handleClick}>
         <span className={s.inner}>{this.props.children}</span>
-      </button>
+      </Link>
     );
   }
 

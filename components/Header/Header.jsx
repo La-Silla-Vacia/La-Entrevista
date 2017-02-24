@@ -11,7 +11,7 @@ class Header extends React.Component {
       <header className={s.root} ref={node => (this.root = node)}>
         <div className={s.row}>
           <Link className={s.title} to="/">
-            <img src="logo_silla_logosimbolo.svg" width="240" alt="Logo La Silla Vacía" />
+            <img src="/logo_silla_logosimbolo.svg" width="240" alt="Logo La Silla Vacía" />
           </Link>
           <Navigation />
         </div>

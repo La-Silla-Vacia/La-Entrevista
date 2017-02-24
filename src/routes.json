@@ -5,6 +5,11 @@
     "chunk": "main"
   },
   {
+    "path": "/section/:id",
+    "page": "./home/index.jsx",
+    "chunk": "main"
+  },
+  {
     "path": "/error",
     "page": "./error/index.jsx",
     "chunk": "main"

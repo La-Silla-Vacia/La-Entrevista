@@ -4,6 +4,28 @@
   background-size: cover;
   background-position: center center;
   overflow: hidden;
+  position: relative;
+}
+
+.root__hidden {
+  position: absolute;
+  z-index: 5;
+  width: 100%;
+}
+
+.background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  transition: transform 1s;
+}
+
+.root__hidden .background {
+  transform: translateY(-100%);
 }
 
 .content {
@@ -12,6 +34,12 @@
   width: 100%;
   text-align: center;
   color: var(--brand-white);
+  transition: margin 1s;
+  position: relative;
+}
+
+.root__hidden .content {
+  margin: 10em auto 0;
 }
 
 .content h1 {
@@ -23,6 +51,11 @@
 .content h2 {
   font-size: 1.25em;
   font-weight: lighter;
+  transition: opacity 1s;
+}
+
+.root__hidden h2 {
+  opacity: 0;
 }
 
 .content h2::after {
@@ -32,6 +65,12 @@
   background-color: var(--brand-white);
   display: block;
   margin: 2em auto;
+  transition: margin 1s, opacity 1s;
+}
+
+.root__hidden h2::after {
+  margin: 0 auto;
+  opacity: 0;
 }
 
 .content p {
@@ -40,11 +79,64 @@
   text-align: left;
   font-weight: lighter;
   line-height: 2;
+  transition: transform 1s;
+  color: var(--brand-white);
 }
 
-@media screen and (max-width: 1024px) {
+.root__hidden .content p {
+  opacity: 0;
+  height: 0;
+  transform-origin: top;
+  transform: rotateX(90deg);
+}
+
+.backButton {
+  color: #fff;
+  display: block;
+  text-align: center;
+  width: 10em;
+  margin: -5em auto 0;
+  text-decoration: none;
+  font-style: italic;
+  text-transform: uppercase;
+  position: relative;
+  z-index: 10;
+}
+
+.backButton::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0;
+  height: 1px;
+  background-color: var(--brand-white);
+  transition: width var(--transition-duration);
+}
+
+.backButton:hover::after,
+.backButton:focus::after {
+  width: 100%;
+}
+
+@media screen and (max-width: 64rem) {
   .content {
     padding: 0 1em;
     box-sizing: border-box;
+  }
+}
+
+@media (max-width: 48rem) {
+  .content {
+    margin: 12em auto 2em;
+  }
+
+  .content h1 {
+    font-size: 2.25em;
+    margin-top: 0;
+  }
+
+  .backButton {
+    margin-top: -6.5em;
   }
 }

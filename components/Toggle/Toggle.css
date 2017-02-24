@@ -1,5 +1,7 @@
 @import '../variables.css';
-
+:root {
+  --transition-duration: .7s;
+}
 .root {
   background: #fff;
   -webkit-backface-visibility: hidden;
@@ -7,31 +9,26 @@
   position: relative;
   margin: 2em 0;
   box-sizing: border-box;
-  border: 2px solid #ccd6d2;
+  border: 3px solid #ccd6d2;
   cursor: pointer;
 }
 
-.root::before {
-  position: absolute;
-  content: " ";
-  width: 3em;
-  height: 3em;
-  border: 2px solid #ccd6d2;
-  border-radius: 100%;
-  left: 0;
-  transform: translate(-60%, -60%);
-  background-color: #fff;
-  background-image: url('/images/question.svg');
-  background-repeat: no-repeat;
-  background-position: center center;
-  background-size: 60%;
-  box-sizing: border-box;
-}
-
-.open {
-  border: 2px solid #ccd6d2;
-  padding: 0;
-}
+/*.root::before {*/
+  /*position: absolute;*/
+  /*content: " ";*/
+  /*width: 3em;*/
+  /*height: 3em;*/
+  /*border: 2px solid #ccd6d2;*/
+  /*border-radius: 100%;*/
+  /*left: 0;*/
+  /*transform: translate(-60%, -60%);*/
+  /*background-color: #fff;*/
+  /*background-image: url('/images/question.svg');*/
+  /*background-repeat: no-repeat;*/
+  /*background-position: center center;*/
+  /*background-size: 60%;*/
+  /*box-sizing: border-box;*/
+/*}*/
 
 .button {
   background: none;
@@ -42,10 +39,6 @@
 }
 
 .button:focus {
-  box-shadow: 0 2px 0 var(--brand-color),
-              0 -2px 0 var(--brand-color),
-              -2px 0 0 var(--brand-color),
-              2px 0 0 0var(--brand-color);
   outline: none;
 }
 
@@ -54,38 +47,30 @@
   transform: rotate(135deg);
 }
 
-.open .title::before {
-  top: 33.3333%;
-}
-
 .title {
   display: block;
-  padding: calc(1em - 3px) 1.5em;
+  padding: calc(0.675em - 3px) 1.5rem;
   position: relative;
   margin: 0;
-  font-weight: lighter;
+  font-weight: 600;
+  font-size: 1.25em;
   color: var(--brand-black);
   cursor: pointer;
+  font-family: var(--font-family-base);
+  letter-spacing: 0.03em;
 }
 
-.title::before,
 .title::after {
   position: absolute;
   content: " ";
-  width: 2px;
-  height: 1em;
-  right: 1.45em;
-  top: 50%;
-  transform: translateY(-50%);
-  background-color: var(--brand-color);
-  transition-duration: 0.2s;
-  transform-origin: center;
-}
-
-.title::after {
-  height: 2px;
   width: 1em;
+  height: 1em;
   right: 1em;
+  top: .6em;
+  background-image: url('/images/toggle.svg');
+  background-size: cover;
+  transition-duration: var(--transition-duration);
+  transform-origin: center;
 }
 
 .content {
