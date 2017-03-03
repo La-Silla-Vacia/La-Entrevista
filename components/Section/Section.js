@@ -44,7 +44,13 @@ class Section extends React.Component {
       // bold
       ['/(\\*\\*|__)(.*?)\\1/g', '<strong>\\2</strong>'],
       // emphasis
-      ['/(\\*|_)(.*?)\\1/g', '<em>\\2</em>'],
+      ['/(\\*|_)(.*?)\\1/g', (line) => {
+        const key = Math.floor(Math.random() * 100000);
+        const str = line.replace('*', '').replace('*', '');
+        return (
+          <h3 key={key}>{str}</h3>
+        )
+      }],
       // strike
       ['/(\\~\\~)(.*?)\\1/g', '<del>\\2</del>'],
       // quote
@@ -59,7 +65,7 @@ class Section extends React.Component {
       }],
       // blockquote
       ['/\\n\\>(.*)/g', (str) => {
-        const key = Math.floor(Math.random() * 1000);
+        const key = Math.floor(Math.random() * 10000);
         const allContent = str.trim().replace('>', '');
         const contentChuncked = allContent.split(':');
         const title = contentChuncked[0];
@@ -69,7 +75,7 @@ class Section extends React.Component {
       // paragraphs
       ['/\\n[^\\n]+\\n/g', (line) => {
         line = line.trim();
-        const key = Math.floor(Math.random() * 1000);
+        const key = Math.floor(Math.random() * 10000);
         return (<p key={key}>{line.trim()}</p>);
       }]
     ], fixes = [

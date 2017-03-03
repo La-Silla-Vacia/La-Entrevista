@@ -1,7 +1,7 @@
 [
   {
     "path": "/",
-    "page": "./home/index.jsx",
+    "page": "./home/index-all.jsx",
     "chunk": "main"
   },
   {
@@ -10,8 +10,8 @@
     "chunk": "main"
   },
   {
-    "path": "/section/:id",
-    "page": "./home/index.jsx",
+    "path": "*/#:id",
+    "page": "./home/index-all.jsx",
     "chunk": "main"
   },
   {
@@ -26,6 +26,6 @@
   },
   {
     "path": "/tasks/:status(pending|completed)?",
-    "page": "./home/index.jsx"
+    "page": "./home/index-all.jsx"
   }
 ]

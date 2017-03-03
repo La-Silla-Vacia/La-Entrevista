@@ -29,6 +29,12 @@ class HomePage extends React.Component {
     document.title = title;
 
     this.getData();
+    this.setLogo();
+  }
+
+  setLogo() {
+    const logo = document.querySelector('.divlogo>a>img');
+    logo.src = "https://la-entrevista.firebaseapp.com/logo_silla_logosimbolo.svg";
   }
 
   getData() {
@@ -64,19 +70,43 @@ class HomePage extends React.Component {
     if (!this.state.data.length) return;
     return this.state.data.map((single, index) => {
       let activeSectionArray = [this.state.openSection];
-      if (!id && this.props.route.params.id) {
-        activeSectionArray = this.props.route.params.id;
-        if (activeSectionArray.indexOf(single.id) !== -1) {
-          return this.createSection(single, index);
-        }
-      } else {
-        console.log(activeSectionArray, single.id);
-        if (id == single.id) {
-          return setTimeout(() => {
-            return this.createSection(single, index);
-          }, 500);
-        }
+      // if (!id && this.props.route.params.id) {
+      //   activeSectionArray = this.props.route.params.id;
+      //   if (activeSectionArray.indexOf(single.id) !== -1) {
+      //     return this.createSection(single, index);
+      //   }
+      // } else {
+      let id = id;
+      if (id == undefined) {
+        // if (this.state.openSection[0]) {
+        //   id = this.state.openSection[0];
+        // } else {
+          id = window.location.hash.replace('#', '').trim();
+        // }
       }
+
+      if (id == single.id) {
+        console.log('abc', id);
+        // return setTimeout(() => {
+          return (
+            <Section
+              id={single.id}
+              title={single.title}
+              intro={single.intro}
+              image={single.image}
+              content={single.text}
+              cols="2"
+              hidden={false}
+              key={index}
+              fullWidth
+            />
+          )
+        // }, 500);
+      } else {
+        console.log('nothing', id);
+      }
+      // }
+
       // if (this.props.route.params.id) {
       //   activeSectionArray = this.props.route.params.id;
       // }
@@ -87,6 +117,9 @@ class HomePage extends React.Component {
 
   createSection(single, index) {
     return (
+      <div>asdf</div>
+    );
+    return (
       <Section
         id={single.id}
         title={single.title}
@@ -94,6 +127,7 @@ class HomePage extends React.Component {
         image={single.image}
         content={single.text}
         cols="2"
+        hidden={false}
         key={index}
         fullWidth
       />
@@ -120,18 +154,19 @@ class HomePage extends React.Component {
     //     document.body.scrollTop -= 1;
     //   }, i * 1.1);
     // }
-    document.body.style.opacity = 0;
+    // document.body.style.opacity = 0;
     this.setState({openSection: id});
-    setTimeout(() => {
+    // setTimeout(() => {
       document.body.scrollTop = 0;
-      document.body.style.opacity = 1;
-    }, 1000);
-    // this.setState({openSection: [id]});
+      // document.body.style.opacity = 1;
+    // }, 400);
+    this.setState({openSection: [id]});
+    this.getSections(id);
   }
 
   componentWillReceiveProps() {
     const id = this.props.route.params.id;
-    // this.setState({openSection: [id]});
+    this.setState({openSection: [id]});
     this.activateSection(id)
   }
 
@@ -139,18 +174,20 @@ class HomePage extends React.Component {
     const stuff = this.getSections();
     const buttons = this.getButtons();
 
+    console.log(stuff);
+
     let hidden = false;
     let link = "";
-    if (this.props.route.params.id) {
+    if (window.location.hash) {
       hidden = true;
-      link = (<Link to="/" className={s.backButton}>Back to overview</Link>);
+      link = (<Link to="#" className={s.backButton}>Back to overview</Link>);
     }
 
     return (
       <Layout>
         <div className={cx(s.root, {[s.root__hidden]: hidden})}>
           <div className={s.background}
-               style={{backgroundImage: "url(https://la-entrevista.firebaseapp.com/images/index_background.jpg)"}}/>
+               style={{backgroundImage: "url(http://archivo.lasillavacia.com/archivos/historias/backgrounds/66.jpg)"}}/>
           <div className={s.content} dangerouslySetInnerHTML={{__html: html}}/>
           {link}
         </div>

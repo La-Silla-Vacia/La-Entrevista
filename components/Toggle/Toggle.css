@@ -50,7 +50,7 @@
   height: 1em;
   right: 1em;
   top: .6em;
-  background-image: url('/images/toggle.svg');
+  background-image: url('https://la-entrevista.firebaseapp.com/images/toggle.svg');
   background-size: cover;
   transition-duration: var(--transition-duration);
   transform-origin: center;

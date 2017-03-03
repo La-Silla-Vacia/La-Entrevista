@@ -26,8 +26,7 @@ class HomePage extends React.Component {
   }
 
   componentDidMount() {
-    document.title = title;
-
+    // document.title = title;
     this.getData();
   }
 
@@ -98,9 +97,11 @@ class HomePage extends React.Component {
     target = Math.round(target);
     duration = Math.round(duration);
     if (duration < 0) {
+      // console.log('bad duration');
       return Promise.reject("bad duration");
     }
     if (duration === 0) {
+      // console.log('on top');
       element.scrollTop = target;
       return Promise.resolve();
     }
@@ -139,7 +140,7 @@ class HomePage extends React.Component {
         const point = smooth_step(start_time, end_time, now);
         const frameTop = Math.round(start_top + (distance * point));
         element.scrollTop = frameTop;
-
+        // console.log(now, end_time);
         // check if we're done!
         if (now >= end_time) {
           resolve();
@@ -151,6 +152,7 @@ class HomePage extends React.Component {
         // interrupted.
         if (element.scrollTop === previous_top
           && element.scrollTop !== frameTop) {
+          // console.log('a');
           resolve();
           return;
         }
@@ -158,7 +160,7 @@ class HomePage extends React.Component {
 
         // schedule next frame for execution
         setTimeout(scroll_frame, 0);
-      }
+      };
 
       // boostrap the animation process
       setTimeout(scroll_frame, 0);
@@ -169,7 +171,7 @@ class HomePage extends React.Component {
     if (!id) return;
     const section = document.getElementById(`section-${id}`);
     const sectionOffset = section.offsetTop;
-    this.scrollTo(document.body, sectionOffset, 1000)
+    this.scrollTo(document.documentElement, sectionOffset, 1000)
   }
 
   componentWillReceiveProps() {
@@ -192,12 +194,13 @@ class HomePage extends React.Component {
     return (
       <Layout>
         <div className={cx(s.root, {[s.root__hidden]: hidden})}>
-          <div className={s.background} style={{backgroundImage: "url(https://la-entrevista.firebaseapp.com/images/index_background.jpg)"}}/>
+          <div className={s.background}
+               style={{backgroundImage: "url(http://archivo.lasillavacia.com/archivos/historias/backgrounds/66.jpg)"}}/>
           <div className={s.content} dangerouslySetInnerHTML={{__html: html}}/>
           {link}
         </div>
         <Section
-          title="Quick go to a section:"
+          title="Seleccione el tema de su interés:"
           cols="3"
           type="simple">
           {buttons}

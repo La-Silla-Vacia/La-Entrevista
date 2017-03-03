@@ -17,7 +17,7 @@ class Button extends React.Component {
 
   render() {
 
-    let link = `/section/${this.props.id}`;
+    let link = `#${this.props.id}`;
     if (this.props.to) {
       link = this.props.to;
     }

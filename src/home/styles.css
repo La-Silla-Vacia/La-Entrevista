@@ -34,6 +34,18 @@
   transition: transform 1s;
 }
 
+.background::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  background-image: -webkit-linear-gradient(rgba(0,0,0,0.25), rgba(0,0,0,0.7));
+  background-image: linear-gradient(rgba(0,0,0,0.25), rgba(0,0,0,0.7));
+}
+
 .root__hidden .background {
   transform: translateY(-100%);
 }
@@ -46,6 +58,7 @@
   color: var(--brand-white);
   transition: margin 1s;
   position: relative;
+  z-index: 1;
 }
 
 .root__hidden .content {
@@ -113,6 +126,13 @@
   text-transform: uppercase;
   position: relative;
   z-index: 10;
+}
+
+.backButton:hover,
+.backButton:active,
+.backButton:focus {
+  text-decoration: none;
+  color: #fff;
 }
 
 .backButton::after {

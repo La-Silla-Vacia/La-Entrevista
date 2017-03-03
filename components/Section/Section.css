@@ -35,7 +35,7 @@
 }
 
 .root__full_width.smallHeight .headerInner {
-  padding-top: 25vh;
+  padding-top: 30vh;
 }
 
 .header {
@@ -79,7 +79,7 @@
 
 .lead {
   color: var(--brand-white);
-  font-size: 1.25em;
+  /*font-size: 1.25em;*/
   text-align: left;
   font-weight: lighter;
   line-height: 2;
@@ -94,11 +94,18 @@
 .content {
   max-width: var(--screen-lg-min);
   margin: 0 auto;
-  line-height: 2;
+  line-height: 1.8;
   background-color: var(--brand-white);
   box-sizing: border-box;
   color: var(--brand-black);
-  padding: 4em 6em;
+  padding: 4em 3em;
+}
+
+.content h3 {
+  margin: 0;
+  line-height: 1.8;
+  font-size: 1.5em;
+  padding-top: 16px;
 }
 
 .content::after {
@@ -157,7 +164,7 @@
   }
 
   .cols_3 {
-    column-count: 2;
+    column-count: 1;
   }
 }
 
@@ -172,6 +179,10 @@
   .content,
   .simple .inner {
     padding: 1em;
+  }
+
+  .cols_3 {
+    column-count: 1;
   }
 }
 

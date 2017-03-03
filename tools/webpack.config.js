@@ -46,7 +46,7 @@ const config = {
   output: {
     path: path.resolve(__dirname, '../public/dist'),
     publicPath: isDebug ? `http://localhost:${process.env.PORT || 3000}/dist/` : '/dist/',
-    filename: isDebug ? '[name].js?[hash]' : '[name].[hash].js',
+    filename: isDebug ? '[name].js?[hash]' : '[name].dist.js',
     chunkFilename: isDebug ? '[id].js?[chunkhash]' : '[id].[chunkhash].js',
     sourcePrefix: '  ',
   },
