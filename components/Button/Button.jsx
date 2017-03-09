@@ -22,6 +22,12 @@ class Button extends React.Component {
       link = this.props.to;
     }
 
+    /*
+     <Link
+     to={link}
+     className={cx(s.root)}
+     onClick={this.handleClick}>
+     */
     return (
       <Link
         to={link}

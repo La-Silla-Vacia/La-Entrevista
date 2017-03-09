@@ -16,9 +16,18 @@ class HomePage extends React.Component {
 
   constructor() {
     super();
+    let dataUri = 'https://la-entrevista.firebaseio.com/data.json';
+    if (typeof window.sillaInteractiveData === 'object') {
+      const sillaInteractiveData = window.sillaInteractiveData;
+      if (typeof sillaInteractiveData.dataUri == 'string') {
+        dataUri = sillaInteractiveData.dataUri;
+      }
+    }
 
     this.state = {
       data: [],
+      mainTitle: [],
+      dataUri: dataUri,
       openSection: []
     };
 
@@ -31,12 +40,13 @@ class HomePage extends React.Component {
   }
 
   getData() {
-    fetch('https://la-entrevista.firebaseio.com/data.json')
+    fetch(this.state.dataUri)
       .then((response) => {
         return response.json()
       })
       .then((json) => {
         const data = [];
+        const mainTitle = [];
         json.map((single) => {
           const newSingle = {
             id: single.id,
@@ -50,9 +60,13 @@ class HomePage extends React.Component {
             },
             hidden: true
           };
-          data.push(newSingle);
+          if (single.type == 'default') {
+            data.push(newSingle);
+          } else if (single.type == 'maintitle') {
+            mainTitle.push(newSingle);
+          }
         });
-        this.setState({data});
+        this.setState({data, mainTitle});
       })
       .catch((ex) => {
         console.log('parsing failed', ex)
@@ -62,6 +76,7 @@ class HomePage extends React.Component {
   getSections() {
     if (!this.state.data.length) return;
     return this.state.data.map((single, index) => {
+      if (single.type !== 'default') return;
       return (
         <Section
           id={single.id}
@@ -81,6 +96,7 @@ class HomePage extends React.Component {
 
   getButtons() {
     return this.state.data.map((single, index) => {
+      if (single.type !== 'default') return;
       return (
         <Button
           key={index}
@@ -171,7 +187,10 @@ class HomePage extends React.Component {
     if (!id) return;
     const section = document.getElementById(`section-${id}`);
     const sectionOffset = section.offsetTop;
-    this.scrollTo(document.documentElement, sectionOffset, 1000)
+    // console.log(document.documentElement);
+    document.body.scrollTop = sectionOffset;
+    document.documentElement.scrollTop = sectionOffset;
+    // this.scrollTo(document.documentElement, sectionOffset, 1000)
   }
 
   componentWillReceiveProps() {
@@ -184,21 +203,28 @@ class HomePage extends React.Component {
     const stuff = this.getSections();
     const buttons = this.getButtons();
 
-    let hidden = false;
-    let link = "";
-    if (this.props.route.params.id) {
-      hidden = true;
-      link = (<Link to="/" className={s.backButton}>Back to overview</Link>);
+    let backgroundImage;
+    let content;
+    if (this.state.mainTitle[0]) {
+      const mainTitle = this.state.mainTitle[0];
+      backgroundImage = mainTitle.image;
+      content = `<h1>${mainTitle.title}</h1>${mainTitle.intro}`;
+    } else if (this.state.data.length) {
+      content = html;
+      backgroundImage = 'http://archivo.lasillavacia.com/archivos/historias/backgrounds/66.jpg';
     }
+
+    let intro = (
+      <div className={cx(s.root)}>
+        <div className={s.background}
+             style={{backgroundImage: `url(${backgroundImage})`}}/>
+        <div className={s.content} dangerouslySetInnerHTML={{__html: content}}/>
+      </div>
+    );
 
     return (
       <Layout>
-        <div className={cx(s.root, {[s.root__hidden]: hidden})}>
-          <div className={s.background}
-               style={{backgroundImage: "url(http://archivo.lasillavacia.com/archivos/historias/backgrounds/66.jpg)"}}/>
-          <div className={s.content} dangerouslySetInnerHTML={{__html: html}}/>
-          {link}
-        </div>
+        {intro}
         <Section
           title="Seleccione el tema de su interés:"
           cols="3"
