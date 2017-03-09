@@ -164,6 +164,13 @@ class Section extends React.Component {
       );
     }
 
+    let credits;
+    if (this.props.imageCredits) {
+      credits = (
+        <small className={s.credits}>{this.props.imageCredits}</small>
+      );
+    }
+
     return (
       <section id={id}
                className={cx(
@@ -175,6 +182,7 @@ class Section extends React.Component {
         <div className={s.inner}>
           {header}
           <div className={s.contentWrap}>
+            {credits}
             {content}
           </div>
         </div>

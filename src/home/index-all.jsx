@@ -46,12 +46,16 @@ class HomePage extends React.Component {
         const data = [];
         const mainTitle = [];
         json.map((single) => {
+          let credits = '';
+          if (single.imageCredits) credits = single.imageCredits;
+
           const newSingle = {
             id: single.id,
             type: single.type,
             image: single.image,
             title: single.title,
             intro: md.render(single.intro),
+            imageCredits: credits,
             text: {
               col1: single.textCol1,
               col2: single.textCol2
@@ -82,6 +86,7 @@ class HomePage extends React.Component {
           intro={single.intro}
           image={single.image}
           content={single.text}
+          imageCredits={single.imageCredits}
           cols="2"
           key={index}
           fullWidth

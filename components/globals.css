@@ -11,14 +11,19 @@ article header .submitted,
 .article-main-body > p,
 .article-sidebar.col-md-4,
 .related-news.col-sm-12,
-.sub-section.vistas {
+.sub-section.vistas,
+.debate .question,
+.author-wrapper.col-sm-offset-1 {
   display: none;
 }
 
-.article-content {
+.article-content,
+.article-main-body,
+.main-publication {
   padding: 0 !important;
   width: 100% !important;
   margin: 0 !important;
+  border-right: 0;
 }
 
 .news,
@@ -31,7 +36,8 @@ article header .submitted,
   width: inherit;
 }
 #header,
-.header-adds {
+.header-adds,
+.lider .encabezado{
   max-width: 1200px;
   margin: 0 auto;
 }
