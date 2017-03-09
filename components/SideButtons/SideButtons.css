@@ -1,0 +1,82 @@
+@import '../variables.css';
+
+.root {
+  position: fixed;
+  right: 10px;
+  top: 40%;
+  transform: translateY(-50%);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+@media screen and (max-width: 1300px) {
+  .root {
+    right: 0;
+  }
+  .item {
+    margin: 1.5em 0.5em;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .root {
+    display: none;
+  }
+}
+
+.item {
+  position: relative;
+  margin: 2em 1.5em;
+}
+
+.bullet {
+  width: 10px;
+  height: 10px;
+  background-color: var(--brand-white);
+  border: 1px solid var(--brand-lightgrey-dark);
+  display: block;
+  border-radius: 50%;
+  position: relative;
+  z-index: 3;
+  padding: 0;
+  cursor: pointer;
+  transition: .2s;
+}
+
+.bullet:hover {
+  border-color: var(--brand-color);
+  background-color: var(--brand-color);
+}
+
+.bullet:hover + .content {
+  opacity: 1;
+  right: 1.5em;
+}
+
+.content {
+  position: absolute;
+  top: 50%;
+  background: rgba(0,0,0,.5);
+  color: var(--brand-white);
+  padding: .5em 1em;
+  border-radius: 3px;
+  right: 1em;
+  transform: translateY(-50%);
+  opacity: 0;
+  transition: .2s;
+  min-width: 10em;
+}
+
+.content::before {
+  content: '';
+  width: 0;
+  height: 0;
+  border-top: .5em solid transparent;
+  border-bottom: .5em solid transparent;
+  border-left: .5em solid rgba(0,0,0,.5);
+  position: absolute;
+  top: 50%;
+  right: 0;
+  transform: translateX(100%) translateY(-50%);
+}

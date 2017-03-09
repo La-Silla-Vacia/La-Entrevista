@@ -5,6 +5,7 @@
   background-position: center center;
   position: relative;
   overflow: hidden;
+  z-index: 5;
 }
 
 .root::before,

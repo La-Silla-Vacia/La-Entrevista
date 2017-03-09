@@ -1,11 +1,10 @@
 import React from 'react';
 import 'whatwg-fetch';
 import cx from 'classnames';
-import Link from '../../components/Link';
 import Layout from '../../components/Layout';
 import Section from '../../components/Section';
 import Button from '../../components/Button';
-import Toggle from '../../components/Toggle';
+import SideButtons from '../../components/SideButtons';
 import s from './styles.css';
 import {title, html} from './index.md';
 const jsx = require('markdown-it-jsx');
@@ -35,7 +34,6 @@ class HomePage extends React.Component {
   }
 
   componentDidMount() {
-    // document.title = title;
     this.getData();
   }
 
@@ -109,88 +107,9 @@ class HomePage extends React.Component {
     });
   }
 
-  scrollTo(element, target, duration) {
-    target = Math.round(target);
-    duration = Math.round(duration);
-    if (duration < 0) {
-      // console.log('bad duration');
-      return Promise.reject("bad duration");
-    }
-    if (duration === 0) {
-      // console.log('on top');
-      element.scrollTop = target;
-      return Promise.resolve();
-    }
-
-    const start_time = Date.now();
-    const end_time = start_time + duration;
-
-    const start_top = element.scrollTop;
-    const distance = target - start_top;
-
-    // based on http://en.wikipedia.org/wiki/Smoothstep
-    const smooth_step = function (start, end, point) {
-      if (point <= start) {
-        return 0;
-      }
-      if (point >= end) {
-        return 1;
-      }
-      const x = (point - start) / (end - start); // interpolation
-      return x * x * (3 - 2 * x);
-    };
-
-    return new Promise(function (resolve, reject) {
-      // This is to keep track of where the element's scrollTop is
-      // supposed to be, based on what we're doing
-      let previous_top = element.scrollTop;
-      // This is like a think function from a game loop
-      const scroll_frame = function () {
-        // if (element.scrollTop != previous_top) {
-        //   reject("interrupted");
-        //   return;
-        // }
-
-        // set the scrollTop for this frame
-        const now = Date.now();
-        const point = smooth_step(start_time, end_time, now);
-        const frameTop = Math.round(start_top + (distance * point));
-        element.scrollTop = frameTop;
-        // console.log(now, end_time);
-        // check if we're done!
-        if (now >= end_time) {
-          resolve();
-          return;
-        }
-
-        // If we were supposed to scroll but didn't, then we
-        // probably hit the limit, so consider it done; not
-        // interrupted.
-        if (element.scrollTop === previous_top
-          && element.scrollTop !== frameTop) {
-          // console.log('a');
-          resolve();
-          return;
-        }
-        previous_top = element.scrollTop;
-
-        // schedule next frame for execution
-        setTimeout(scroll_frame, 0);
-      };
-
-      // boostrap the animation process
-      setTimeout(scroll_frame, 0);
-    });
-  }
-
   activateSection(id) {
     if (!id) return;
-    const section = document.getElementById(`section-${id}`);
-    const sectionOffset = section.offsetTop;
-    // console.log(document.documentElement);
-    document.body.scrollTop = sectionOffset;
-    document.documentElement.scrollTop = sectionOffset;
-    // this.scrollTo(document.documentElement, sectionOffset, 1000)
+    jQuery('html, body').animate({ scrollTop: jQuery(`#section-${id}`).offset().top }, 1000);
   }
 
   componentWillReceiveProps() {
@@ -231,11 +150,16 @@ class HomePage extends React.Component {
           type="simple">
           {buttons}
         </Section>
+
+        <SideButtons
+          data={this.state.data}
+          callback={this.activateSection}
+        />
+
         { stuff }
       </Layout>
     );
   }
-
 }
 
 export default HomePage;
