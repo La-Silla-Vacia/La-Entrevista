@@ -12,9 +12,43 @@ article header .submitted,
 .article-sidebar.col-md-4,
 .related-news.col-sm-12,
 .sub-section.vistas,
-.debate .question,
-.author-wrapper.col-sm-offset-1 {
+.debate .question {
   display: none;
+}
+
+.author-wrapper.col-sm-offset-1 {
+  padding-right: 0;
+  padding-left: 25px;
+  position: absolute;
+  z-index: 40;
+  background: rgba(25,25,25,.4);
+  margin: 0 auto;
+  left: 0;
+  right: 0;
+  width: 100%;
+}
+
+.author-wrapper.col-sm-offset-1 .author {
+  border-bottom: 0;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.author-wrapper.col-sm-offset-1 .author span {
+  color: #fff;
+}
+
+.author-wrapper .share-container ul {
+  margin-bottom: 0;
+  float: right;
+}
+
+.author-wrapper .date-llena span {
+  margin-top: 4px;
+}
+
+.stats p {
+  padding-top: 0;
 }
 
 .article-content,
@@ -26,6 +60,10 @@ article header .submitted,
   border-right: 0;
 }
 
+.main-publication {
+  margin-top: -2px !important;
+}
+
 .news,
 .article-main-body {
   padding-left: 0;
@@ -35,12 +73,14 @@ article header .submitted,
 #wrapper {
   width: inherit;
 }
+
 #header,
 .header-adds,
-.lider .encabezado{
+.lider .encabezado {
   max-width: 1200px;
   margin: 0 auto;
 }
+
 /*
 #header {
   position: absolute;
@@ -78,6 +118,10 @@ article header .submitted,
 
 #silla-interactive-container {
   font-size: 14px;
+}
+
+#silla-interactive-container p {
+  margin-left: 0;
 }
 
 .article-full {

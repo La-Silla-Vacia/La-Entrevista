@@ -1,70 +1,101 @@
 <!doctype html>
 <html class="no-js" lang="">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title><%= config.title %></title>
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <style>
-      @import url("http://lasillavacia.com/modules/system/system.base.css?omjyc8");
-    </style>
-    <style>
-      @import url("http://lasillavacia.com/modules/contextual/contextual.css?omjyc8");
-      @import url("http://lasillavacia.com/sites/all/modules/jquery_update/replace/ui/themes/base/minified/jquery.ui.core.min.css?omjyc8");
-      @import url("http://lasillavacia.com/sites/all/modules/jquery_update/replace/ui/themes/base/minified/jquery.ui.theme.min.css?omjyc8");
-      @import url("http://lasillavacia.com/sites/all/modules/jquery_update/replace/ui/themes/base/minified/jquery.ui.resizable.min.css?omjyc8");
-      @import url("http://lasillavacia.com/sites/all/modules/jquery_update/replace/ui/themes/base/minified/jquery.ui.button.min.css?omjyc8");
-      @import url("http://lasillavacia.com/sites/all/modules/jquery_update/replace/ui/themes/base/minified/jquery.ui.dialog.min.css?omjyc8");
-      @import url("http://lasillavacia.com/sites/all/modules/media/css/media.css?omjyc8");
-    </style>
-    <style>
-      @import url("http://lasillavacia.com/sites/all/modules/simplenews/simplenews.css?omjyc8");
-      @import url("http://lasillavacia.com/sites/all/modules/date/date_api/date.css?omjyc8");
-      @import url("http://lasillavacia.com/modules/field/theme/field.css?omjyc8");
-      @import url("http://lasillavacia.com/sites/all/modules/logintoboggan/logintoboggan.css?omjyc8");
-      @import url("http://lasillavacia.com/modules/node/node.css?omjyc8");
-      @import url("http://lasillavacia.com/sites/all/modules/views/css/views.css?omjyc8");
-      @import url("http://lasillavacia.com/sites/all/modules/ckeditor/css/ckeditor.css?omjyc8");
-      @import url("http://lasillavacia.com/sites/all/modules/admin_menu/admin_menu.css?omjyc8");
-      @import url("http://lasillavacia.com/sites/all/modules/admin_menu/admin_menu_toolbar/admin_menu_toolbar.css?omjyc8");
-      @import url("http://lasillavacia.com/modules/shortcut/shortcut.css?omjyc8");
-    </style>
-    <style>
-      @import url("http://lasillavacia.com/sites/all/modules/ctools/css/ctools.css?omjyc8");
-      @import url("http://lasillavacia.com/sites/all/modules/panels/css/panels.css?omjyc8");
-      @import url("http://lasillavacia.com/sites/all/themes/lasillavacia/layouts/despliegue/despliegue.css?omjyc8");
-      @import url("http://lasillavacia.com/sites/all/modules/webform/css/webform.css?omjyc8");
-      @import url("http://lasillavacia.com/sites/all/modules/panels/plugins/layouts/onecol/onecol.css?omjyc8");
-      @import url("http://lasillavacia.com/sites/all/modules/ckeditor/css/ckeditor.editor.css?omjyc8");
-    </style>
-    <link type="text/css" rel="stylesheet" href="//cdn.jsdelivr.net/bootstrap/3.3.5/css/bootstrap.css" media="all" />
-    <style>
-      @import url("http://lasillavacia.com/sites/all/themes/bootstrap/css/3.3.5/overrides.min.css?omjyc8");
-      @import url("http://lasillavacia.com/sites/all/themes/lasillavacia/css/style.css?omjyc8");
-      @import url("http://lasillavacia.com/sites/all/themes/lasillavacia/css/color.css?omjyc8");
-      @import url("http://lasillavacia.com/sites/all/themes/lasillavacia/css/base.css?omjyc8");
-      @import url("http://lasillavacia.com/sites/all/themes/lasillavacia/css/lsv_custom.css?omjyc8");
-      @import url("http://lasillavacia.com/sites/all/themes/lasillavacia/css/responsive.css?omjyc8");
-      @import url("http://lasillavacia.com/sites/all/themes/lasillavacia/css/responsive-custom.css?omjyc8");
-    </style>
-    <style>
-      @import url("http://lasillavacia.com/sites/all/themes/lasillavacia/css/css_custom/lsv.css?omjyc8");
-    </style>
-    <link href="https://fonts.googleapis.com/css?family=Lato:700|Roboto+Slab:700|Roboto:300,300i,400,400i,500,500i,700" rel="stylesheet">
-    <link rel="apple-touch-icon" href="apple-touch-icon.png">
-  </head>
-  <body>
-    <div id="silla-interactive-container"></div>
-    <script>
-      window.sillaInteractiveData = {
-        dataUri: 'https://la-entrevista.firebaseio.com/datalasillalider.json'
-      }
-    </script>
-    <script
-      src="https://code.jquery.com/jquery-2.2.4.min.js"
-      integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
-      crossorigin="anonymous"></script>
-    <script src="<%= bundle %>"></script>
-  </body>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title><%= config.title %></title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    @import url("http://lasillavacia.com/modules/system/system.base.css?omjyc8");
+  </style>
+  <style>
+    @import url("http://lasillavacia.com/modules/contextual/contextual.css?omjyc8");
+    @import url("http://lasillavacia.com/sites/all/modules/jquery_update/replace/ui/themes/base/minified/jquery.ui.core.min.css?omjyc8");
+    @import url("http://lasillavacia.com/sites/all/modules/jquery_update/replace/ui/themes/base/minified/jquery.ui.theme.min.css?omjyc8");
+    @import url("http://lasillavacia.com/sites/all/modules/jquery_update/replace/ui/themes/base/minified/jquery.ui.resizable.min.css?omjyc8");
+    @import url("http://lasillavacia.com/sites/all/modules/jquery_update/replace/ui/themes/base/minified/jquery.ui.button.min.css?omjyc8");
+    @import url("http://lasillavacia.com/sites/all/modules/jquery_update/replace/ui/themes/base/minified/jquery.ui.dialog.min.css?omjyc8");
+    @import url("http://lasillavacia.com/sites/all/modules/media/css/media.css?omjyc8");
+  </style>
+  <style>
+    @import url("http://lasillavacia.com/sites/all/modules/simplenews/simplenews.css?omjyc8");
+    @import url("http://lasillavacia.com/sites/all/modules/date/date_api/date.css?omjyc8");
+    @import url("http://lasillavacia.com/modules/field/theme/field.css?omjyc8");
+    @import url("http://lasillavacia.com/sites/all/modules/logintoboggan/logintoboggan.css?omjyc8");
+    @import url("http://lasillavacia.com/modules/node/node.css?omjyc8");
+    @import url("http://lasillavacia.com/sites/all/modules/views/css/views.css?omjyc8");
+    @import url("http://lasillavacia.com/sites/all/modules/ckeditor/css/ckeditor.css?omjyc8");
+    @import url("http://lasillavacia.com/sites/all/modules/admin_menu/admin_menu.css?omjyc8");
+    @import url("http://lasillavacia.com/sites/all/modules/admin_menu/admin_menu_toolbar/admin_menu_toolbar.css?omjyc8");
+    @import url("http://lasillavacia.com/modules/shortcut/shortcut.css?omjyc8");
+  </style>
+  <style>
+    @import url("http://lasillavacia.com/sites/all/modules/ctools/css/ctools.css?omjyc8");
+    @import url("http://lasillavacia.com/sites/all/modules/panels/css/panels.css?omjyc8");
+    @import url("http://lasillavacia.com/sites/all/themes/lasillavacia/layouts/despliegue/despliegue.css?omjyc8");
+    @import url("http://lasillavacia.com/sites/all/modules/webform/css/webform.css?omjyc8");
+    @import url("http://lasillavacia.com/sites/all/modules/panels/plugins/layouts/onecol/onecol.css?omjyc8");
+    @import url("http://lasillavacia.com/sites/all/modules/ckeditor/css/ckeditor.editor.css?omjyc8");
+  </style>
+  <link type="text/css" rel="stylesheet" href="//cdn.jsdelivr.net/bootstrap/3.3.5/css/bootstrap.css" media="all"/>
+  <style>
+    @import url("http://lasillavacia.com/sites/all/themes/bootstrap/css/3.3.5/overrides.min.css?omjyc8");
+    @import url("http://lasillavacia.com/sites/all/themes/lasillavacia/css/style.css?omjyc8");
+    @import url("http://lasillavacia.com/sites/all/themes/lasillavacia/css/color.css?omjyc8");
+    @import url("http://lasillavacia.com/sites/all/themes/lasillavacia/css/base.css?omjyc8");
+    @import url("http://lasillavacia.com/sites/all/themes/lasillavacia/css/lsv_custom.css?omjyc8");
+    @import url("http://lasillavacia.com/sites/all/themes/lasillavacia/css/responsive.css?omjyc8");
+    @import url("http://lasillavacia.com/sites/all/themes/lasillavacia/css/responsive-custom.css?omjyc8");
+  </style>
+  <style>
+    @import url("http://lasillavacia.com/sites/all/themes/lasillavacia/css/css_custom/lsv.css?omjyc8");
+  </style>
+  <link href="https://fonts.googleapis.com/css?family=Lato:700|Roboto+Slab:700|Roboto:300,300i,400,400i,500,500i,700"
+        rel="stylesheet">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+</head>
+<div class="col-sm-12 col-md-12 col-lg-11 col-lg-offset-1 info-author">
+  <div class="author author-top">
+    <div class="editor col-md-9 row">
+      <p>Por
+        <span>
+          <a href="/user/31">Juanita León</a>        </span>
+        <span> ·
+      03 de Marzo de 2017      </span>
+      </p>
+    </div>
+  </div>
+</div>
+<!--<div class="result perfil col-sm-2 col-md-3 col-lg-2" style="display: none;">-->
+  <!--<div class="img-container">-->
+    <!--<img src="http://lasillavacia.com/sites/default/files/styles/cuadrado_200x200/public/mipuesto/pictures/picture-10000262-1424125321.png?itok=rRHqIv23" alt="Fundación Liderazgo y Democracia">-->
+  <!--</div>-->
+  <!--<h6>-->
+    <!--<a href="/users/fundacion-liderazgo-y-democracia">Fundación Liderazgo y Democracia</a>-->
+  <!--</h6>-->
+  <!--<span class="subtitle">Fundación Liderazgo y Democracia</span>-->
+  <!--<span class="flag-wrapper flag-silla-llena-follow-user flag-silla-llena-follow-user-10000262">-->
+      <!--<a href="/flag/flag/silla_llena_follow_user/10000262?destination=node/60067&amp;token=vK-Ao9B8Q5hSk4VXdllm9uJIfRDTc4JVMxuWFM8P_6U" title="" class="flag flag-action flag-link-toggle follow-botton flag-processed" rel="nofollow">Seguir</a><span class="flag-throbber">&nbsp;</span>-->
+    <!--</span>-->
+  <!--<div class="number-follow"><span><strong>195</strong> Seguidores</span><span><strong>125</strong> Siguiendo</span></div>-->
+  <!--<div class="stats">-->
+    <!--<p class="proceedings"><span><strong>13</strong> Debates</span></p>-->
+    <!--<p class="articles"><span><strong>263</strong> Artículos</span></p>-->
+  <!--</div>-->
+  <!--<div class="clearfix"></div>-->
+<!--</div>-->
+<body>
+<div id="silla-interactive-container"></div>
+<script>
+  window.sillaInteractiveData = {
+    dataUri: 'https://la-entrevista.firebaseio.com/datalasillalider.json'
+  }
+</script>
+<script
+  src="https://code.jquery.com/jquery-2.2.4.min.js"
+  integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
+  crossorigin="anonymous"></script>
+<script src="<%= bundle %>"></script>
+</body>
 </html>

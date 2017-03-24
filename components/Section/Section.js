@@ -1,8 +1,9 @@
 import React, {PropTypes} from 'react';
 import cx from 'classnames';
 import s from './Section.css';
-import Button from '../Button';
 import Toggle from '../Toggle';
+const MarkdownIt = require('markdown-it'),
+  md = new MarkdownIt();
 
 class Section extends React.Component {
 
@@ -40,7 +41,19 @@ class Section extends React.Component {
       // images
       ['/\\!\\[([^\\[]+)\\]\\(([^\\(]+)\\)/g', '<img src=\"\\2\" alt=\"\\1\" />'],
       // link
-      ['/\\[([^\\[]+)\\]\\(([^\\(]+)\\)/g', '<a href=\"\\2\">\\1</a>'],
+      ['/\\[([^\\[]+)\\]\\(([^\\(]+)\\)/g', (str) => {
+      // console.log(str);
+        let split = str.split('[');
+        const before = split[0];
+
+        let newSplit = split[1].split(']');
+        let text = newSplit[0];
+
+        let link = newSplit[1].split(')')[0].replace('(', '');
+        // console.log(link);
+        const after = newSplit[1].split(')')[1];
+        return ( <p>{before} <a href={link}>{text}</a> {after}</p> );
+      }],
       // bold
       ['/(\\*\\*|__)(.*?)\\1/g', '<strong>\\2</strong>'],
       // emphasis
@@ -112,6 +125,37 @@ class Section extends React.Component {
     });
   };
 
+  componentDidUpdate() {
+    jQuery(".toggle-container").each(function() {
+      var $this = jQuery(this);
+      var button;
+      if ($this.find('.toggle').length) {
+        button = $this.find('.toggle');
+      } else {
+        var text = $this.text();
+        var title = text.split(':')[0];
+        var body = text.split(':')[1];
+        $this.html(`<button class="toggle">${title}<img src="https://la-entrevista.firebaseapp.com/images/toggle.svg" alt=""/></button><div class="toggle-content">${body}</div>`);
+        button = $this.find('.toggle');
+      }
+
+      var open = false;
+      var $toggle = $this.find('.toggle');
+      var $content = $this.find('.toggle-content');
+      button.click(function() {
+        if (!open) {
+          $content.slideDown();
+          open = true;
+          $this.addClass('open');
+        } else {
+          $content.slideUp();
+          open = false;
+          $this.removeClass('open');
+        }
+      });
+    })
+  }
+
   render() {
 
     let headerStyles = {};
@@ -120,6 +164,7 @@ class Section extends React.Component {
         backgroundImage: `url(${this.props.image})`
       }
     }
+
 
     let header = (
       <h2 className={s.defaultTitle}>{this.props.title}</h2>
@@ -142,18 +187,22 @@ class Section extends React.Component {
     let col1Formatted,
       col2Formatted;
     if (this.props.content) {
-      col1Formatted = this.markdown_parser(this.props.content.col1);
-      col2Formatted = this.markdown_parser(this.props.content.col2);
+      // console.log(this.markdown_parser('Por desgracia son las dos condiciones, no hay confianza ni visión. En una presentación que hice en un foro de la [Revista Semana](https://www.youtube.com/watch?v=JozLa_hqaZ8&feature=youtu.be) señalaba que el país tenía cuatro condiciones hoy día.'));
+
+      //col1Formatted = this.markdown_parser(this.props.content.col1);
+      //col2Formatted = this.markdown_parser(this.props.content.col2);
+      col1Formatted = md.render(this.props.content.col1);
+      col2Formatted = md.render(this.props.content.col2);
+
+      col1Formatted = col1Formatted.replace('<blockquote>', '<div class="toggle-container">').replace('</blockquote>', '</div>');
+      col2Formatted = col2Formatted.replace('<blockquote>', '<div class="toggle-container">').replace('</blockquote>', '</div>');
+
       // console.log(contentFormatted);
     }
     let content = (
       <div className={cx(s.content)}>
-        <div className={s.column}>
-          {col1Formatted}
-        </div>
-        <div className={s.column}>
-          {col2Formatted}
-        </div>
+        <div className={s.column} dangerouslySetInnerHTML={{__html: col1Formatted}} />
+        <div className={s.column} dangerouslySetInnerHTML={{__html: col2Formatted}} />
       </div>
     );
     if (this.props.children) {

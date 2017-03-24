@@ -26,7 +26,6 @@ class SideButtons extends React.Component {
       </ul>
     )
   }
-
 }
 
 export default SideButtons;

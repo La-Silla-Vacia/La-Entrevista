@@ -55,10 +55,10 @@
 }
 
 .content {
-  margin: 10em auto 6em;
+  margin: 10em auto 3em;
   max-width: 42em;
   width: 100%;
-  text-align: center;
+  text-align: left;
   color: var(--brand-white);
   transition: margin 1s;
   position: relative;
@@ -158,6 +158,95 @@
 .backButton:hover::after,
 .backButton:focus::after {
   width: 100%;
+}
+
+.center {
+  margin: 0 auto
+}
+
+.author {
+  position: relative;
+  z-index: 6;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 1em;
+}
+
+.author_container {
+  display: flex;
+  align-items: center;
+}
+
+.author h6 {
+  font-size: 1em;
+  margin-bottom: 0;
+}
+
+.author h6 a {
+  color: rgb(230,230,230);
+}
+
+.author_subtitle {
+  color: rgb(230,230,230);
+  font-size: .9em;
+}
+
+.author_image {
+  background-color: var(--brand-white);
+  width: 4em;
+  height: 4em;
+  border-radius: 50%;
+  float: left;
+  margin: 0 1em 0 0;
+}
+
+.author_description {
+  float: left;
+}
+
+.followBtn a {
+  font-size: 0.7em;
+  color: rgb(230,230,230);
+  margin-top: .5em;
+  border: solid 1px rgb(230,230,230);
+  text-decoration: none;
+  padding: 7px 17px;
+  text-transform: uppercase;
+  text-align: center;
+  border-radius: 3px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  display: block;
+}
+
+.followBtn a:hover {
+  background-color: var(--brand-white);
+  color: var(--brand-color)
+}
+
+.disclaimer {
+  color: var(--brand-white);
+  position: relative;
+  margin: 0 auto;
+  padding: 1em;
+  display: block;
+  z-index: 6;
+}
+
+.subtitle {
+  max-width: 75rem;
+  margin: 0 auto;
+  background: #fff;
+  padding: 4em 6em;
+}
+
+.subtitleText {
+  max-width: 45em;
+  margin: 0 auto;
+  font-family: 'Georgia', Times new roman, serif;
+  font-size: 1em;
 }
 
 @media screen and (max-width: 64rem) {

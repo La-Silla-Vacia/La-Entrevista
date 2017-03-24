@@ -13,6 +13,7 @@
     "d3.chart.sankey": "^0.4.0",
     "fastclick": "^1.0.6",
     "history": "^4.5.1",
+    "jquery": "^3.2.1",
     "markdown-it": "^8.3.0",
     "markdown-it-jsx": "^1.1.0",
     "react": "^15.4.2",
