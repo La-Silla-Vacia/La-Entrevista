@@ -7,7 +7,6 @@ article header .submitted,
 .news .article-meta,
 .col-lg-offset-1.info-author,
 .article-main-body .img-container,
-.article-main-body .author,
 .article-main-body > p,
 .article-sidebar.col-md-4,
 .related-news.col-sm-12,
@@ -16,12 +15,27 @@ article header .submitted,
   display: none;
 }
 
+.article-main-body .author {
+  display: block;
+  position: absolute;
+  z-index: 40;
+  width: 100%;
+  background: rgba(25, 25, 25, .4);
+  top: 0;
+  margin-top: 0;
+  padding: 0 1em;
+}
+
+.article-main-body .author span {
+  color: #fff;
+}
+
 .author-wrapper.col-sm-offset-1 {
   padding-right: 0;
   padding-left: 25px;
   position: absolute;
   z-index: 40;
-  background: rgba(25,25,25,.4);
+  background: rgba(25, 25, 25, .4);
   margin: 0 auto;
   left: 0;
   right: 0;
