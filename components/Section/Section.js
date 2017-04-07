@@ -194,8 +194,8 @@ class Section extends React.Component {
       col1Formatted = md.render(this.props.content.col1);
       col2Formatted = md.render(this.props.content.col2);
 
-      col1Formatted = col1Formatted.replace('<blockquote>', '<div class="toggle-container">').replace('</blockquote>', '</div>');
-      col2Formatted = col2Formatted.replace('<blockquote>', '<div class="toggle-container">').replace('</blockquote>', '</div>');
+      col1Formatted = col1Formatted.replace(/<blockquote>/g, '<div class="toggle-container">').replace('</blockquote>', '</div>');
+      col2Formatted = col2Formatted.replace(/<blockquote>/g, '<div class="toggle-container">').replace('</blockquote>', '</div>');
 
       // console.log(contentFormatted);
     }

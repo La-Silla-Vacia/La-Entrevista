@@ -245,7 +245,6 @@ class HomePage extends React.Component {
     let subtitle;
     if (this.state.subTitle.length) {
       const subtitleData = this.state.subTitle[0].intro;
-      console.log(subtitleData);
       subtitle = (
         <div className={s.subtitle}>
           <div className={s.subtitleText} dangerouslySetInnerHTML={{ __html: subtitleData }} />
